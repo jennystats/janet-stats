@@ -1,0 +1,5 @@
+(import typed :prefix "")
+(import stats/dist :prefix "")
+(def UP {:lower-tail false})
+(printf "qf_0.975_400001_400000\t%.17g" (qf 0.975 400001 400000))
+(printf "qf_1e-16_400001_400000_up\t%.17g" (qf 1e-16 400001 400000 UP))
