@@ -1,7 +1,7 @@
 # stats/ranksum.janet - exact rank-sum DPs (R psignrank /
 # pwilcox conventions) + shared tie helpers + the correlation exact
 # DPs (kendall.c / prho.c mirrors). Pure janet.
-(import typed :prefix "")
+(import jennystats/typed :prefix "")
 (import ./utils :prefix "")
 
 (defn/typed rank-multiplicities {:args [:array] :ret :array} [sorted-vals]

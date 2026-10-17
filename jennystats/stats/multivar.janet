@@ -5,7 +5,7 @@
 # janet (small-p, branchy - composition); k-means assignment = the
 # dist2-rows kernel (the O(nkp) hot loop) + the masked centroid
 # accumulation (vmap2+vreduce per cluster off the transposed columns).
-(import typed :prefix "")
+(import jennystats/typed :prefix "")
 (import ./utils :prefix "")
 (import ./num)
 (import ./linalg)

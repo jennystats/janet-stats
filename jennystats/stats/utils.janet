@@ -3,7 +3,7 @@
 # fractions for P(a,x) / I_x(a,b) - each R-conformant at extreme
 # args. Pure janet, zero deps; num-independent (the pure path is the
 # reference lane).
-(import typed :prefix "")
+(import jennystats/typed :prefix "")
 
 (def SQRT-2PI (math/sqrt (* 2 math/pi)))
 (def LN-SQRT-2PI 0.91893853320467274178032973640562)

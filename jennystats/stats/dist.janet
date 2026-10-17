@@ -11,7 +11,7 @@
 # contract - out-of-domain → NaN, kernels trust) EXCEPT dbinom/
 # dpois, whose integer prepass is required (lgamma of a bad k is a
 # silent value, not a NaN).
-(import typed :prefix "")
+(import jennystats/typed :prefix "")
 (import ./utils :prefix "")
 (import ./num)
 

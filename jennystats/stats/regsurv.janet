@@ -9,7 +9,7 @@
 # residual/rss/tss through the vector kernels; the p x p
 # solve/inverse ride the linalg module's own num path. coxph/clogit
 # stay pure.
-(import typed :prefix "")
+(import jennystats/typed :prefix "")
 (import ./utils :prefix "")
 (import ./dist :prefix "")
 (import ./descriptive :prefix "")

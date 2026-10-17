@@ -26,14 +26,14 @@ contract in `specs/api-contract.md`.
 
 janet-stats runs on Janet 1.42+. The core library is pure Janet and
 self-contained: the `typed` module it uses is vendored in
-`modules/typed.janet` (matching
-[janet-kit](https://github.com/jennystats/janet-kit) 0.1.1+, which
+`jennystats/typed.janet` (matching
+[janet-kit](https://github.com/jennystats/janet-kit) 0.1.2+, which
 carries the same docstring-hoisting behaviour - see `VENDORED.md`).
 No install step:
 
 ```bash
 # from the repo root
-JANET_PATH=modules janet -e '(import /modules/stats :prefix "")'
+JANET_PATH=. janet -e '(import jennystats/stats :prefix "")'
 ```
 
 Optional: the `janet-num` companion library (built C kernels) enables
@@ -42,10 +42,17 @@ automatically. Without it, everything runs in pure Janet - packed-
 handle inputs on kernel paths error with guidance instead of kernel
 acceleration, and large-input paths are slower.
 
+All jenny modules install under a `jennystats/` namespace directory:
+`(import jennystats/stats)` - collision-proof against bare-name
+shadowing of core symbols or other packages, by construction. Prefer
+a shorter call prefix? Alias at import (e.g.
+`(import jennystats/stats :as stats)`), or use the `:prefix ""` form
+shown in the quick start below.
+
 ## Quick start
 
 ```janet
-(import /modules/stats :prefix "")
+(import jennystats/stats :prefix "")
 ```
 
 ### Distributions (d/p/q families, R convention)

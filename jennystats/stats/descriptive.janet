@@ -8,7 +8,7 @@
 # exists for a janet sort or a pairwise sign loop - :num runs the
 # SAME documented janet composition (identical-formula policy);
 # packed handles are rejected with an actionable unpack-first error.
-(import typed :prefix "")
+(import jennystats/typed :prefix "")
 (import ./utils :prefix "")
 (import ./num)
 
