@@ -20,7 +20,7 @@
 
 (def fixtures-dir
   (let [here (string (dyn *current-file*))]
-    (string (dirname here) "/../tests/fixtures/stats")))# ---- utils fixtures: fn,a,b,x,expected -------------------------------------
+    (string (do (def i (last (string/find-all "/" here))) (string/slice here 0 i)) "/../tests/fixtures/stats")))# ---- utils fixtures: fn,a,b,x,expected -------------------------------------
 (each line (parse-fixture (string fixtures-dir "/tier-b-utils.csv"))
   (def fields (string/split "," line))
   (def fn-kw (fields 0))
