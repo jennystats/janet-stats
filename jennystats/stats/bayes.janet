@@ -11,7 +11,7 @@
 # conditional sum kernels per step (staged once; the RNG sequence is
 # untouched - draws identical, sums bitwise); MH/optimizers/bayes-lm
 # are composition (scalar chain state, user fns, small-p glue).
-(import typed :prefix "")
+(import jennystats/typed :prefix "")
 (import ./utils :prefix "")
 (import ./dist :prefix "")
 (import ./regsurv :prefix "")

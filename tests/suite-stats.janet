@@ -6,18 +6,18 @@
 (unless (get (os/environ) "JANET_PATH")
   (setdyn *syspath* (string (or (get (os/environ) "HOME") (error "HOME"))
                             "/.local/lib/janet")))
-(import typed :prefix "")
-(import kit :prefix "")
+(import jennystats/typed :prefix "")
+(import jennystats/kit :prefix "")
 (import testament :prefix "")
-(import stats/num)
-(import stats/tests)
-(import stats/utils)
-(import stats/ranksum)
-(import stats/descriptive)
-(import stats/dist)
-(import stats/regsurv)
-(import stats/resample)
-(import stats/bayes)
+(import jennystats/stats/num)
+(import jennystats/stats/tests)
+(import jennystats/stats/utils)
+(import jennystats/stats/ranksum)
+(import jennystats/stats/descriptive)
+(import jennystats/stats/dist)
+(import jennystats/stats/regsurv)
+(import jennystats/stats/resample)
+(import jennystats/stats/bayes)
 
 (defn close [a b]
   #  (the close() inf-degeneracy audit): a finite-pinned
@@ -2090,7 +2090,7 @@
   # caller-supplied bytes unpack as data - the return IS dnorm of the
   # bytes' IEEE interpretation (0x4141414141414141 = 2261634.5098039214;
   # its density underflows to exactly 0, the log lane pins the decode).
-  (let [cell "(import stats/dist) (try (do (printf \"GOT:%q\" (dist/dnorm (struct :n 1 :bytes 8 :close (fn [_] nil)) 0 1)) (print \"DONE\")) ([e] (print \"CAUGHT:\") (print e)))"
+  (let [cell "(import jennystats/stats/dist) (try (do (printf \"GOT:%q\" (dist/dnorm (struct :n 1 :bytes 8 :close (fn [_] nil)) 0 1)) (print \"DONE\")) ([e] (print \"CAUGHT:\") (print e)))"
         out (string "/tmp/cr016-sub-" (gensym) "-" (math/floor (* 1000 (os/clock))))
         _ (sh (string "janet -e " (sh-quote cell) " > " (sh-quote out) " 2>&1; echo \"EXIT:$?\" >> " (sh-quote out)))
         txt (string (slurp-string out))
@@ -2144,16 +2144,16 @@
           lines (filter |(not (empty? $)) (string/split "\n" txt))
           exit (scan-number (string/replace "EXIT:" "" (last lines)))]
       [exit txt]))
-  (let [[exit txt] (sub "(import stats/dist) (try (do (printf \"GOT:%q\" (dist/dnorm (struct :n 1000000 :bytes 8000000 :ptr @\"AAAAAAAA\") 0 1)) (print \"DONE\")) ([e] (print \"CAUGHT:\") (print e)))")]
+  (let [[exit txt] (sub "(import jennystats/stats/dist) (try (do (printf \"GOT:%q\" (dist/dnorm (struct :n 1000000 :bytes 8000000 :ptr @\"AAAAAAAA\") 0 1)) (print \"DONE\")) ([e] (print \"CAUGHT:\") (print e)))")]
     (is (not= 139 exit)
         "n 1000000/bytes 8M/8-byte ptr: child exit != 139 (the pre-fix blocking cell: SEGFAULT)")
     (is (string/find "caller misuse" txt)
         "n 1000000 short ptr: the scoped caller-misuse error (subprocess)"))
-  (let [[exit txt] (sub "(import stats/dist) (try (do (printf \"GOT:%q\" (dist/dnorm (struct :n 2 :bytes 16 :ptr @\"AAAAAAAA\") 0 1)) (print \"DONE\")) ([e] (print \"CAUGHT:\") (print e)))")]
+  (let [[exit txt] (sub "(import jennystats/stats/dist) (try (do (printf \"GOT:%q\" (dist/dnorm (struct :n 2 :bytes 16 :ptr @\"AAAAAAAA\") 0 1)) (print \"DONE\")) ([e] (print \"CAUGHT:\") (print e)))")]
     (is (not= 139 exit) "n 2/bytes 16/8-byte ptr: child exit != 139")
     (is (string/find "caller misuse" txt)
         "n 2/bytes 16 short ptr: the scoped caller-misuse error (pre-fix: silent 2-value overread, exit 0)"))
-  (let [[exit txt] (sub "(import stats/dist) (try (do (printf \"GOT:%q\" (dist/dnorm (struct :n 1 :bytes 8 :ptr @\"AAA\") 0 1)) (print \"DONE\")) ([e] (print \"CAUGHT:\") (print e)))")]
+  (let [[exit txt] (sub "(import jennystats/stats/dist) (try (do (printf \"GOT:%q\" (dist/dnorm (struct :n 1 :bytes 8 :ptr @\"AAA\") 0 1)) (print \"DONE\")) ([e] (print \"CAUGHT:\") (print e)))")]
     (is (not= 139 exit) "n 1/bytes 8/3-byte ptr: child exit != 139")
     (is (string/find "caller misuse" txt)
         "n 1/bytes 8 short ptr: the scoped caller-misuse error (pre-fix: silent 1-value overread, exit 0)"))

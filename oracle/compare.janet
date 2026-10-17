@@ -1,6 +1,6 @@
 # comparator: post-vs-R and pre-vs-R rel errors, keyed join.
-(import typed :prefix "")
-(import kit :prefix "")
+(import jennystats/typed :prefix "")
+(import jennystats/kit :prefix "")
 
 (defn/typed load-cells {:args [:string] :ret :table} [path]
   (def t @{})

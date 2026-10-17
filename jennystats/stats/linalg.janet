@@ -4,7 +4,7 @@
 # The landed kernels resolve through num/resolve-impl ({:impl
 # :impl} routes dynamically); qr is documented composition (branchy
 # Householder loops - no kernel applies)
-(import typed :prefix "")
+(import jennystats/typed :prefix "")
 
 (import ./num)
 
@@ -32,7 +32,7 @@
   "LAZY kernel accessor - the require runs ONLY inside a :num call
   site (the pure path never loads janet-num). defn/typed bindings
   are ref-tables {:value ...} - unwrap on access."
-  (def m (require "janet-num"))
+  (def m (require "jennystats/num"))
   (fn [nm]
     (def w (get m nm))
     (if (table? w) (get w :value) w)))

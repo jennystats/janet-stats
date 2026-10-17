@@ -8,7 +8,7 @@
 # kernels (indicator-masked rank sums - sorts and exact DPs stay
 # janet, the documented composition); chisq-test/fisher/kruskal are
 # composition (small tables, scatter-adds - recorded reasoning).
-(import typed :prefix "")
+(import jennystats/typed :prefix "")
 (import ./utils :prefix "")
 (import ./dist :prefix "")
 (import ./descriptive :prefix "")
