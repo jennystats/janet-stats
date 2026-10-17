@@ -22,7 +22,7 @@ acceleration, and large-input paths are slower).
 measured, not guessed - see [Precision](#precision) below and the
 contract in `specs/api-contract.md`.
 
-## Install and running
+## Install
 
 janet-stats runs on Janet 1.42+. The core library is pure Janet and
 self-contained: the `typed` module it uses is vendored in
@@ -42,14 +42,14 @@ automatically. Without it, everything runs in pure Janet - packed-
 handle inputs on kernel paths error with guidance instead of kernel
 acceleration, and large-input paths are slower.
 
+## Quick start
+
 All jenny modules install under a `jennystats/` namespace directory:
 `(import jennystats/stats)` - collision-proof against bare-name
-shadowing of core symbols or other packages, by construction. Prefer
-a shorter call prefix? Alias at import (e.g.
-`(import jennystats/stats :as stats)`), or use the `:prefix ""` form
-shown in the quick start below.
-
-## Quick start
+shadowing of core symbols or other packages, by construction. The
+examples below use the `:prefix ""` form;
+`(import jennystats/stats :as stats)` gives `stats/`-prefixed call
+sites instead.
 
 ```janet
 (import jennystats/stats :prefix "")
