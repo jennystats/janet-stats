@@ -1,10 +1,10 @@
 # verification probe (janet side). Usage:
 #   JANET_PATH=<modules-dir> janet probe.janet > out.txt
 # Every cell %.17g, keyed, one per line: name<TAB>value
-(import typed :prefix "")
-(import kit :prefix "")
-(import stats/dist :prefix "")
-(import stats/utils :prefix "")
+(import jennystats/typed :prefix "")
+(import jennystats/kit :prefix "")
+(import jennystats/stats/dist :prefix "")
+(import jennystats/stats/utils :prefix "")
 
 (def UP {:lower-tail false})
 

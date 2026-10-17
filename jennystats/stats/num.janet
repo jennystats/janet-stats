@@ -9,7 +9,7 @@
 # STATE TABLE: module vars are
 # snapshotted by import - a table is the live per-process state the
 # tests manipulate (num/state).
-(import typed :prefix "")
+(import jennystats/typed :prefix "")
 
 (def state
   @{:presence :unknown    # :unknown | :present | :absent
@@ -54,7 +54,7 @@
             candidates))
     (when first-dir (setdyn *syspath* first-dir)))
   (var load-err nil)
-  (def r (if (try (do (require "janet-num") true)
+  (def r (if (try (do (require "jennystats/num") true)
                ([e] (set load-err (string e)) false))
           :present :absent))
   # the require failure is CAPTURED,
@@ -108,7 +108,7 @@
   "The kernel accessor (name -> unwrapped value); defn/typed module
   bindings are ref-tables {:value ...} - unwrap on access. Only
   valid when present (resolve-impl gates every call site)."
-  (def m (require "janet-num"))
+  (def m (require "jennystats/num"))
   (fn [nm]
     (def w (get m nm))
     (if (table? w) (get w :value) w)))

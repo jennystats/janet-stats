@@ -5,7 +5,7 @@
 # serves the OPTIONAL janet-num companion when the env has none.
 DIR="$(cd "$(dirname "$0")" && pwd)"
 [ -n "$JANET_PATH" ] || export JANET_PATH="$HOME/.local/lib/janet"
-export JANET_PATH="$DIR/modules:$DIR/tests/lib:$JANET_PATH"
+export JANET_PATH="$DIR:$DIR/tests/lib:$JANET_PATH"
 fail=0
 if janet "$DIR/tests/smoke-stats.janet"; then
   echo "PASS smoke-stats"

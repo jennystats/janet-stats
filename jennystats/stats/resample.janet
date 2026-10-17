@@ -1,7 +1,7 @@
 # resample.janet - bootstrap (percentile + BCa) and permutation
 # tests. R conventions decoded from the boot 1.3-32 source
 # (boot.ci / bca.ci / perc.ci / norm.inter / usual.jack).
-(import typed :prefix "")
+(import jennystats/typed :prefix "")
 (import ./dist :prefix "")
 (import ./num)
 

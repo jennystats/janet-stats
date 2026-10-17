@@ -22,18 +22,18 @@ acceleration, and large-input paths are slower).
 measured, not guessed - see [Precision](#precision) below and the
 contract in `specs/api-contract.md`.
 
-## Build
+## Install and running
 
 janet-stats runs on Janet 1.42+. The core library is pure Janet and
 self-contained: the `typed` module it uses is vendored in
-`modules/typed.janet` (matching
-[janet-kit](https://github.com/jennystats/janet-kit) 0.1.1+, which
+`jennystats/typed.janet` (matching
+[janet-kit](https://github.com/jennystats/janet-kit) 0.1.2+, which
 carries the same docstring-hoisting behaviour - see `VENDORED.md`).
 No install step:
 
 ```bash
 # from the repo root
-JANET_PATH=modules janet -e '(import /modules/stats :prefix "")'
+JANET_PATH=. janet -e '(import jennystats/stats :prefix "")'
 ```
 
 Optional: the `janet-num` companion library (built C kernels) enables
@@ -42,10 +42,17 @@ automatically. Without it, everything runs in pure Janet - packed-
 handle inputs on kernel paths error with guidance instead of kernel
 acceleration, and large-input paths are slower.
 
+All jenny modules install under a `jennystats/` namespace directory:
+`(import jennystats/stats)` - collision-proof against bare-name
+shadowing of core symbols or other packages, by construction. Prefer
+a shorter call prefix? Alias at import (e.g.
+`(import jennystats/stats :as stats)`), or use the `:prefix ""` form
+shown in the quick start below.
+
 ## Quick start
 
 ```janet
-(import /modules/stats :prefix "")
+(import jennystats/stats :prefix "")
 ```
 
 ### Distributions (d/p/q families, R convention)
@@ -182,6 +189,18 @@ from the measured set:
 
 The philosophy: no silent wrong values. Where the library cannot be
 exact, it says so in the error or in the contract.
+
+## Tests
+
+The full oracle suite (R-reference regression rows, distribution
+cells, survival and resampling checks) runs from the repo root:
+
+```bash
+./run_tests.sh        # RESULT: pass
+```
+
+The suite skips gracefully when the optional `janet-num` companion
+is absent; the pure-Janet paths are always tested.
 
 ## License
 

@@ -1,5 +1,5 @@
-(import typed :prefix "")
-(import stats/dist :prefix "")
+(import jennystats/typed :prefix "")
+(import jennystats/stats/dist :prefix "")
 (def UP {:lower-tail false})
 (printf "qf_1e-16_5_400001_up\t%.17g" (qf 1e-16 5 400001 UP))
 (printf "qf_0.025_5_1e6\t%.17g" (qf 0.025 5 1e6))
