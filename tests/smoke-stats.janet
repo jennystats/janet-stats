@@ -4,7 +4,6 @@
 # CSV (no quoting/NA/embedded commas) - the trivial reader is complete.
 (import jennystats/stats)
 (import jennystats/typed :prefix "")
-(import jennystats/kit :prefix "")
 
 (defn assert-close [a b tol msg]
   (def diff (math/abs (- a b)))

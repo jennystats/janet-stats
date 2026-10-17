@@ -7,7 +7,6 @@
   (setdyn *syspath* (string (or (get (os/environ) "HOME") (error "HOME"))
                             "/.local/lib/janet")))
 (import jennystats/typed :prefix "")
-(import jennystats/kit :prefix "")
 (import testament :prefix "")
 (import jennystats/stats/num)
 (import jennystats/stats/tests)
