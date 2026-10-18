@@ -6,4 +6,4 @@
   :version "0.1.2")
 
 (declare-source
-  :source ["jennystats/stats"])
+  :source ["jennystats"])
