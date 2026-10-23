@@ -7,3 +7,4 @@ include:
     file: /templates/gate.yml
     inputs:
       project_name: "janet-stats"
+      module_name: "stats"
