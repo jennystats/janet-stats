@@ -5,8 +5,11 @@ tests, regression, survival analysis, resampling and Bayesian
 estimation - 146 functions, pure Janet, R-convention semantics.
 
 Built for statistical computing without leaving the Janet process.
-The core library is self-contained: the `typed` module it uses is
-vendored in-repo - no install step. Part of [Jenny
+The core library is self-contained: the `typed` and `kit` modules it
+uses are vendored in-repo - a plain clone works with no install step.
+(The manifest also declares them as Janet-package dependencies, so
+package-manager installs fetch them by tag; either route gets the
+same files.) Part of [Jenny
 Stats](https://github.com/jennystats), a home for Janet data and
 statistics packages. Jenny is just Janet.
 
