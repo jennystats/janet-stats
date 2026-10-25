@@ -7,6 +7,5 @@ include:
     file: /templates/gate.yml
     inputs:
       project_name: "janet-stats"
-      pm_expected_red: true
       module_name: "stats"
       janet_setup: "libs/install-janet-num.sh"
