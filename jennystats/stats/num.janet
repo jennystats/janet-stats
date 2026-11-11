@@ -32,8 +32,7 @@
   # unset/empty and the loader failed), the silent :pure resolution
   # gets a LOUD one-per-process warning - the user knows what ran.
   # the heal predicate is ALIGNED with janet-num's own
-  # heal (a deliberate copy, not a shared module - the vendored
-  # refresh stays byte-simple; the formal contract is
+  # heal (a deliberate copy, not a shared module; the formal contract is
   # the janet-num repository's specs/syspath-heal.qnt): no heal when HOME is nil/empty,
   # no clobber of a non-default inherited syspath, first EXISTING dir
   # of the short list, single dir.

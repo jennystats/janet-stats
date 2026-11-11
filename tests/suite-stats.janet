@@ -2172,6 +2172,34 @@
              (close (get r 1) (dist/dnorm 1.0 0 1)))
         "real pack-f64 handle (sufficient by construction) -> still passes, zero false positives")))
 
+#==------------------------------------------------------------------------==#
+# PACKAGE SHAPE - no vendored siblings
+#==------------------------------------------------------------------------==#
+# The package ships one module. typed and kit are the declared janet-kit
+# dependency, num the declared janet-num dependency; a copy in this tree
+# shadows the installed one and drifts from it.
+(deftest no-vendored-siblings
+  (def here (string (dyn *current-file*)))
+  (def cut (last (string/find-all "/" here)))
+  (def root (if cut (string (string/slice here 0 cut) "/..") ".."))
+  (def sibling-deps {"typed" "janet-kit" "kit" "janet-kit" "num" "janet-num"})
+  (def own @["stats"])
+  (def shipped (os/dir (string root "/jennystats")))
+  (each entry shipped
+    (def name (if (string/has-suffix? ".janet" entry)
+                (string/slice entry 0 (- (length entry) 6))
+                entry))
+    (is (not (nil? (index-of name own)))
+        (if (nil? (get sibling-deps name))
+          (string "unexpected module in jennystats/: " entry)
+          (string "vendored sibling jennystats/" entry
+                  " - that module is the declared " (get sibling-deps name)
+                  " dependency"))))
+  (each name own
+    (is (or (not (nil? (index-of (string name ".janet") shipped)))
+            (not (nil? (index-of name shipped))))
+        (string "own module present: " name))))
+
 (def reports (run-tests! :silent? true :no-exit? true))
 (var failures 0)
 (each r reports

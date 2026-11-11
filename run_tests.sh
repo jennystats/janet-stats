@@ -1,8 +1,8 @@
 #!/bin/sh
-# run_tests.sh - janet-stats smoke + conformance suite. Repo modules
-# come FIRST so the tests always exercise this tree (typed resolves
-# in-repo), not an installed copy. The $HOME/.local/lib/janet seed
-# serves the OPTIONAL janet-num companion when the env has none.
+# run_tests.sh - janet-stats smoke + conformance suite. The repo root
+# comes FIRST so the tests exercise this tree's stats modules; typed and
+# kit resolve from the janet-kit dependency on $JANET_PATH. The
+# $HOME/.local/lib/janet seed serves that dependency when the env has none.
 DIR="$(cd "$(dirname "$0")" && pwd)"
 [ -n "$JANET_PATH" ] || export JANET_PATH="$HOME/.local/lib/janet"
 export JANET_PATH="$DIR:$DIR/tests/lib:$JANET_PATH"

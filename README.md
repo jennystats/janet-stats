@@ -5,11 +5,12 @@ tests, regression, survival analysis, resampling and Bayesian
 estimation - 146 functions, pure Janet, R-convention semantics.
 
 Built for statistical computing without leaving the Janet process.
-The core library is self-contained: the `typed` and `kit` modules it
-uses are vendored in-repo - a plain clone works with no install step.
-(The manifest also declares them as Janet-package dependencies, so
-package-manager installs fetch them by tag; either route gets the
-same files.) Part of [Jenny
+Its `typed` and `kit` modules are the declared
+[janet-kit](https://github.com/jennystats/janet-kit) dependency, and
+its packed-vector kernels the optional
+[janet-num](https://github.com/jennystats/janet-num) one; the manifest
+declares both, so a package-manager install fetches them by tag. Part
+of [Jenny
 Stats](https://github.com/jennystats), a home for Janet data and
 statistics packages. Jenny is just Janet.
 
@@ -21,22 +22,27 @@ acceleration, and large-input paths are slower).
 
 ## Status
 
-51-test suite, green. Precision boundaries are
+52-test suite, green. Precision boundaries are
 measured, not guessed - see [Precision](#precision) below and the
 contract in `specs/api-contract.md`.
 
 ## Install
 
-janet-stats runs on Janet 1.42+. The core library is pure Janet and
-self-contained: the `typed` module it uses is vendored in
-`jennystats/typed.janet` (matching
-[janet-kit](https://github.com/jennystats/janet-kit) 0.1.2+, which
-carries the same docstring-hoisting behaviour - see `VENDORED.md`).
-No install step:
+janet-stats runs on Janet 1.42+. The core library is pure Janet; it
+imports `typed` and `kit` from the declared
+[janet-kit](https://github.com/jennystats/janet-kit) dependency
+(0.1.4 or newer - that release carries the docstrings this document
+quotes). Install the package and its dependencies together:
 
 ```bash
-# from the repo root
-JANET_PATH=. janet -e '(import jennystats/stats :prefix "")'
+jpm install https://github.com/jennystats/janet-stats
+```
+
+From a clone, the repo root supplies `jennystats/stats` and the installed
+janet-kit tree supplies the rest:
+
+```bash
+JANET_PATH=.:"$HOME/.local/lib/janet" janet -e '(import jennystats/stats :prefix "")'
 ```
 
 Optional: the `janet-num` companion library (built C kernels) enables
