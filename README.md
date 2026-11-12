@@ -28,7 +28,7 @@ contract in `specs/api-contract.md`.
 
 ## Install
 
-janet-stats runs on Janet 1.42+. The core library is pure Janet; it
+janet-stats runs on Janet 1.43+. The core library is pure Janet; it
 imports `typed` and `kit` from the declared
 [janet-kit](https://github.com/jennystats/janet-kit) dependency
 (0.1.4 or newer - that release carries the docstrings this document
